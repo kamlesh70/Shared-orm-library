@@ -5,6 +5,7 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "main": "dist/index.js",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -17,7 +18,15 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "migration:up": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run -d src/modules/config/ormconfig.ts",
+    "migration:down": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:revert -d src/modules/config/ormconfig.ts",
+    "typeorm": "ts-node --require tsconfig-paths/register ./node_modules/typeorm/cli",
+    "migration:run": "npm run typeorm migration:run -- -d ./src/database/typeorm.config.sync.ts",
+    "migration:generate": "npm run typeorm -- -d ./src/database/typeorm.config.sync.ts migration:generate ",
+    "migration:create": "npm run typeorm -- migration:create ",
+    "migration:revert": "npm run typeorm -- -d ./src/database/typeorm.config.sync.ts migration:revert",
+    "migration:show": "npm run typeorm -- migration:show -d ./src/database/typeorm.config.sync.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
