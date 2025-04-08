@@ -22,6 +22,11 @@ This library is designed for use in a microservice architecture or multi-repo se
 
 ---
 
+## 📄 Prerequisites
+  -  Node.js >= 22.x
+
+---
+
 ## 🔌 Installation in your application via GitHub link
 
 - npm install https://github.com/kamlesh70/Shared-orm-library
